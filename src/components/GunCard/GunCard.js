@@ -1,8 +1,10 @@
 import React from 'react';
+import {useState} from 'react';
+import Model from '../../Model/Model';
 
 const GunCard = ({gun,handlePlus}) => {
-    const {name,img,category,action} = gun;
-    console.log(gun)
+    const [handleGun, setHandleGun] = useState({});
+    const {name,img,category} = gun;
     return (
         <div className='mt-5'>
             <div className="card w-96 bg-base-100 shadow-xl">
@@ -19,10 +21,11 @@ const GunCard = ({gun,handlePlus}) => {
                     </div>
                     <div className='flex gap-3 '>
                     <button onClick={handlePlus} className="btn w-20">Buy</button>
-                    <button className="btn btn-secondary">Details</button>
+                    <label onClick={() => setHandleGun(gun)}  htmlFor="my-modal-3" className="btn modal-button btn-secondary">Details</label>
                     </div>
                 </div>
                 </div>
+                    { handleGun && (<Model handleGun = {handleGun} setHandleGun = {setHandleGun}></Model>)}
         </div>
     );
 };
